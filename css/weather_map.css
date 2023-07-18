@@ -11,6 +11,10 @@ h1 {
     font-size: 2rem;
 }
 
+form {
+    margin-bottom: .5em;
+}
+
 #weatherInfo {
     flex-wrap: wrap;
     margin-bottom: 20px;
@@ -39,7 +43,6 @@ span {
     font-size: 1.25rem;
     font-weight: 200;
 }
-
 
 
 #map {
