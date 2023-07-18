@@ -1,0 +1,49 @@
+.page-wrapper {
+    font-family: 'Encode Sans Semi Condensed', sans-serif;
+}
+
+header {
+    text-align: center;
+    margin: 0.5rem;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+#weatherInfo {
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.weatherCard {
+    height: 18rem;
+    text-align: center;
+    border: 1px solid rgba(108, 106, 106, 0.15);
+    padding: 1.5rem;
+    border-radius: 2rem;
+    font-size: .5rem;
+}
+
+#weatherInfo h2 {
+    margin: 10px;
+    height: 0.5rem;
+}
+
+#temp {
+    font-size: 1.75rem;
+}
+
+
+span {
+    font-size: 1.25rem;
+    font-weight: 200;
+}
+
+
+
+#map {
+    height: 20rem;
+    width: 70%;
+    margin-bottom: 10px;
+}
