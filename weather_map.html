@@ -23,10 +23,19 @@
     <div class="container justify-center">
         <header>
             <h1>Weather App</h1>
-            <label for="place">Enter Name of Place</label>
-            <input type="search" name="place" id="place">
         </header>
+        <div class="search">
+            <form action="">
+                <label for="place">Change City</label>
+                <input type="search" name="place" id="place">
+                <button type="submit">Submit</button>
+            </form>
+        </div>
         <div class="row justify-center">
+            <div class="row justify-center">
+                <div id="weatherInfoCurrent">
+                </div>
+            </div>
             <div class="d-flex align-center">
                 <div class="row gap-25 justify-center" id="weatherInfo">
                 </div>
