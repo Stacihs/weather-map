@@ -16,30 +16,30 @@ $(() => {
 
 
     /*****FUNCTIONS*****/
-    $.ajax(OPEN_WEATHER_URL, {
-        data: {
-            APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
-        }
-    }).done((data) => {
-        console.log('current weather', data);
-        renderCurrentWeather(data);
-    }).fail(console.error);
-
-    // Dynamically render html to DOM current forecast
-    const renderCurrentWeather = ((weatherStats) => {
-        $('#weatherInfoCurrent').append(`<div class="weatherCard">
-                <h1>${weatherStats.name}</h1>
-                <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span></div>
-                <h2>Feels Like</h2>
-                <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
-                <h2>Humidity</h2>
-                <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
-                <h2>Wind</h2>
-                <div><span>${weatherStats.wind.speed} mph</span></div>
-                <h2>Conditions</h2>
-                <div><span>${weatherStats.weather[0].description}</span></div>
-            </div>`);
-    });
+    // $.ajax(OPEN_WEATHER_URL, {
+    //     data: {
+    //         APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+    //     }
+    // }).done((data) => {
+    //     console.log('current weather', data);
+    //     renderCurrentWeather(data);
+    // }).fail(console.error);
+    //
+    // // Dynamically render html to DOM current forecast
+    // const renderCurrentWeather = ((weatherStats) => {
+    //     $('#weatherInfoCurrent').append(`<div class="weatherCard">
+    //             <h1>${weatherStats.name}</h1>
+    //             <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span></div>
+    //             <h2>Feels Like</h2>
+    //             <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
+    //             <h2>Humidity</h2>
+    //             <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
+    //             <h2>Wind</h2>
+    //             <div><span>${weatherStats.wind.speed} mph</span></div>
+    //             <h2>Conditions</h2>
+    //             <div><span>${weatherStats.weather[0].description}</span></div>
+    //         </div>`);
+    // });
 
 
     $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
