@@ -5,7 +5,6 @@ $(() => {
     const OPEN_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
     const OPEN_WEATHER_URL_FIVE_DAY = "https://api.openweathermap.org/data/2.5/forecast";
     const map = initializeMap();
-    let userInput = document.getElementById('place');
 
     /*****FUNCTIONS*****/
     function initializeMap() {
@@ -96,8 +95,10 @@ $(() => {
 
 
     // User search for different city weather
-    function userSearch() {
-        geocode('Seattle', MAPBOX_TOKEN).then((data) => {
+    function userSearch(e) {
+        e.preventDefault();
+        let userInput = document.getElementById('place').value;
+        geocode(userInput, MAPBOX_TOKEN).then((data) => {
             console.log(data);
             map.setCenter(data);
 
@@ -113,7 +114,7 @@ $(() => {
 
                 $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
                     data: {
-                        APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+                        APPID: OPEN_WEATHER_APPID, lat: data[1], lon: data[0], units: "imperial"
                     }
                 }).done((data) => {
                     console.log(data);
@@ -127,13 +128,13 @@ $(() => {
 
     };
 
-    // userSearch();
+    // userSearch();userSearch
     /*****EVENTS*****/
     //Event listener on submit button
     document.querySelector('button').addEventListener('click', userSearch);
 
     /*****RUNS WHEN APP LOADS*****/
-})();
+});
 
 
 
