@@ -32,15 +32,22 @@ $(() => {
             center: [-98.491142, 29.424349],
             zoom: 10
         }
-        return new mapboxgl.Map(mapOptions);
 
+        return new mapboxgl.Map(mapOptions);
 
     }).fail(console.error);
 
 
 
 
-
+    $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
+        data: {
+            APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+        }
+    }).done((data) => {
+        console.log(data);
+        renderFiveDayForecast(data);
+    }).fail(console.error);
 
 
     // Dynamically render html to DOM current forecast
@@ -59,15 +66,6 @@ $(() => {
             </div>`);
     });
 
-
-    $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
-        data: {
-            APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
-        }
-    }).done((data) => {
-        console.log(data);
-        renderFiveDayForecast(data);
-    }).fail(console.error);
 
     // Dynamically render html to DOM for five-day forecast
     const renderFiveDayForecast = ((weatherStats) => {
@@ -110,7 +108,7 @@ $(() => {
 
     /*****EVENTS*****/
     //When user types in search
-    userInputBox.addEventListener('HTMLInputElement', userInputSearch());
+    // userInputBox.addEventListener('HTMLInputElement', userInputSearch());
 
     /*****RUNS WHEN APP LOADS*****/
 })();
