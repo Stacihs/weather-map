@@ -59,14 +59,19 @@ $(() => {
     const renderCurrentWeather = ((weatherStats) => {
         $('#weatherInfoCurrent').append(`<div class="weatherCard">
                 <div><h1>${weatherStats.name}</h1></div>
-                <div class="currentContent">
-                    <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span></div>
-                    <h2>Feels Like</h2>
-                    <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
-                    <h2>Humidity</h2>
-                    <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
-                    <h2>Wind</h2>
-                    <div><span>${weatherStats.wind.speed} mph</span></div>
+                <div class="row justify-space-between">
+                    <div class="column align-items">
+                        <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span>
+                    </div>   
+                    <div class="column current2">
+                        <h2>Feels Like</h2>
+                        <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
+                        <h2>Humidity</h2>
+                        <div><span>${parseInt(weatherStats.main.humidity)}%</span></div> 
+                        <h2>Wind</h2>
+                        <div><span>${weatherStats.wind.speed} mph</span></div>
+                    </div>
+                </div>
             </div>`);
     });
 
