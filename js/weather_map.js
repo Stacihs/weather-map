@@ -5,7 +5,7 @@ $(() => {
     const OPEN_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
     const OPEN_WEATHER_URL_FIVE_DAY = "https://api.openweathermap.org/data/2.5/forecast";
     const map = initializeMap();
-    let userInput = document.getElementById('place').value;
+    let userInput = document.getElementById('place');
 
     /*****FUNCTIONS*****/
     function initializeMap() {
@@ -22,41 +22,37 @@ $(() => {
 
 
     // AJAX call for current weather in San Antonio creating map object with returned data
+    $.ajax(OPEN_WEATHER_URL, {
+        data: {
+            APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+        }
+    }).done((data) => {
+        console.log('current weather', data);
+        renderCurrentWeather(data);
 
-        $.ajax(OPEN_WEATHER_URL, {
-            data: {
-                APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
-            }
-        }).done((data) => {
-            console.log('current weather', data);
-            renderCurrentWeather(data);
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+        const mapOptions = {
+            container: 'map',
+            style: 'mapbox://styles/mapbox/navigation-day-v1',
+            center: [-98.491142, 29.424349],
+            zoom: 10
+        }
 
-            mapboxgl.accessToken = MAPBOX_TOKEN;
-            const mapOptions = {
-                container: 'map',
-                style: 'mapbox://styles/mapbox/navigation-day-v1',
-                center: [-98.491142, 29.424349],
-                zoom: 10
-            }
-
-            const marker = new mapboxgl.Marker({
-                draggable: true
-            }).setLngLat([-98.491142, 29.424349])
-                .addTo(map);
-        }).fail(console.error);
-
+        const marker = new mapboxgl.Marker({
+            draggable: true
+        }).setLngLat([-98.491142, 29.424349])
+            .addTo(map);
+    }).fail(console.error);
 
 
-
-        $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
-            data: {
-                APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
-            }
-        }).done((data) => {
-            console.log(data);
-            renderFiveDayForecast(data);
-        }).fail(console.error);
-
+    $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
+        data: {
+            APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+        }
+    }).done((data) => {
+        console.log(data);
+        renderFiveDayForecast(data);
+    }).fail(console.error);
 
 
     // Dynamically render html to DOM current forecast
@@ -103,13 +99,37 @@ $(() => {
         geocode('Seattle', MAPBOX_TOKEN).then((data) => {
             console.log(data);
             map.setCenter(data);
+
+            $.ajax(OPEN_WEATHER_URL, {
+                data: {
+                    APPID: OPEN_WEATHER_APPID, lat: data[1], lon: data[0], units: "imperial"
+                }
+            }).done((data) => {
+
+                console.log('current weather', data);
+                $('.weatherCard').remove();
+                renderCurrentWeather(data);
+
+                $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
+                    data: {
+                        APPID: OPEN_WEATHER_APPID, lat: 29.423017, lon: -98.48527, units: "imperial"
+                    }
+                }).done((data) => {
+                    console.log(data);
+                    renderFiveDayForecast(data);
+                }).fail(console.error);
+
+
+            }).fail(console.error);
+
         })
+
     };
 
-
+    // userSearch();
     /*****EVENTS*****/
     //Event listener on submit button
-    document.querySelector('#submit').addEventListener('submit', userSearch);
+    document.querySelector('button').addEventListener('click', userSearch);
 
     /*****RUNS WHEN APP LOADS*****/
 })();
