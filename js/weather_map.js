@@ -67,9 +67,6 @@ $(() => {
                     <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
                     <h2>Wind</h2>
                     <div><span>${weatherStats.wind.speed} mph</span></div>
-                    <h2>Conditions</h2>
-                    <div><span>${weatherStats.weather[0].description}</span></div>
-                </div>
             </div>`);
     });
 
@@ -87,8 +84,7 @@ $(() => {
                     <div><span>${parseInt(day.main.humidity)}%</span></div>
                     <h2>Wind</h2>
                     <div><span>${parseInt(day.wind.speed)} mph</span></div>
-                    <div><span>${day.weather[0].description}</span></div>
-                </div>`);
+                  </div>`);
             }
         });
     });
