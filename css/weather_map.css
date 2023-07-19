@@ -19,19 +19,26 @@ form {
     margin-bottom: .5em;
 }
 
+.current {
+    margin-bottom: 2rem;
+    width: 1200px;
+}
+
 #weatherInfo {
     flex-wrap: wrap;
     margin-bottom: 20px;
+}
+
+#weatherInfoCurrent,
+#mapSquare {
+    height: 20rem;
+    width: 10rem;
 }
 
 #map,
 .weatherCard {
     border: 1px solid rgba(108, 106, 106, 0.15);
     border-radius: 1rem;
-}
-
-.weatherInfoCurrent {
-
 }
 
 #map {

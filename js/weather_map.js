@@ -4,17 +4,27 @@ $(() => {
     /*****GLOBAL VARIABLES*****/
     const OPEN_WEATHER_URL = "https://api.openweathermap.org/data/2.5/weather";
     const OPEN_WEATHER_URL_FIVE_DAY = "https://api.openweathermap.org/data/2.5/forecast";
-    // const map = initializeMap();
-    let userInputBox = document.querySelector('input');
+    const map = initializeMap();
+    let userInput = document.getElementById('place').value;
 
 
-    // TODO create loop to combine current and 5day forecast cards
+
     // TODO create marker on map for current city
     // TODO user can move marker or click on map and add marker
     // TODO weather updates as marker is moved
-
-
     /*****FUNCTIONS*****/
+    function initializeMap() {
+        mapboxgl.accessToken = MAPBOX_TOKEN;
+
+        const mapOptions = {
+            container: 'map',
+            style: 'mapbox://styles/mapbox/navigation-day-v1',
+            center: [-98.491142, 29.424349],
+            zoom: 10
+        }
+        return new mapboxgl.Map(mapOptions);
+    }
+
 
     // AJAX call for current weather in San Antonio creating map object with returned data
     $.ajax(OPEN_WEATHER_URL, {
@@ -24,20 +34,23 @@ $(() => {
     }).done((data) => {
         console.log('current weather', data);
         renderCurrentWeather(data);
-        mapboxgl.accessToken = MAPBOX_TOKEN;
 
+        mapboxgl.accessToken = MAPBOX_TOKEN;
         const mapOptions = {
             container: 'map',
             style: 'mapbox://styles/mapbox/navigation-day-v1',
             center: [-98.491142, 29.424349],
             zoom: 10
         }
+        const marker = new mapboxgl.Marker({
+                draggable: true
+            }).setLngLat([-98.491142, 29.424349])
+              .addTo(map);
 
         return new mapboxgl.Map(mapOptions);
 
+
     }).fail(console.error);
-
-
 
 
     $.ajax(OPEN_WEATHER_URL_FIVE_DAY, {
@@ -89,30 +102,19 @@ $(() => {
     });
 
 
-    // Map
-    // function userInputSearch() {
-    //
-    //     geocode(userInputBox, MAPBOX_TOKEN).then((data) => {
-    //         console.log(data);
-    //          map.setCenter(data);
-    //         const userInputBoxPopup = new mapboxgl.Popup()
-    //             .setHTML(`<p>${userInputBoxSearch}</p>`)
-    //         const userInputBoxMarker = new mapboxgl.Marker()
-    //             .setLngLat(data)
-    //             .addTo(map)
-    //             .setPopup(userInputBoxPopup);
-    //     })
-    //
-    //     return new mapboxgl.Map(mapOptions);
-    // }
-
-
+    // User search for different city weather
+    function userSearch() {
+        geocode(userInput, MAPBOX_TOKEN).then((data) => {
+            console.log(data);
+            map.setCenter(data);
+        })
+    }
     /*****EVENTS*****/
     //When user types in search
-    // userInputBox.addEventListener('HTMLInputElement', userInputSearch());
+    document.querySelector('button').addEventListener('click', userSearch);
 
     /*****RUNS WHEN APP LOADS*****/
-})();
+});
 
 
 
