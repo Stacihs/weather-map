@@ -71,7 +71,7 @@ $(() => {
     const renderFiveDayForecast = ((weatherStats) => {
         weatherStats.list.forEach((day, index) => {
             if (index % 8 === 0) {
-                $('#weatherInfo').append(`<div class="weatherCard d-flex flex-column justify-space-around">
+                $('#weatherInfo').append(`<div class="weatherCard">
                     <h2>${day.dt_txt.slice(0, 10).split('-').reverse().join('/')}</h2>
                     <div><span id="temp">${parseInt(day.main.temp)}&deg;</span></div>
                     <h2>Feels Like</h2>
