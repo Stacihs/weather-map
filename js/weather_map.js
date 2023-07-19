@@ -8,7 +8,6 @@ $(() => {
     let userInput = document.getElementById('place').value;
 
 
-
     // TODO create marker on map for current city
     // TODO user can move marker or click on map and add marker
     // TODO weather updates as marker is moved
@@ -43,12 +42,9 @@ $(() => {
             zoom: 10
         }
         const marker = new mapboxgl.Marker({
-                draggable: true
-            }).setLngLat([-98.491142, 29.424349])
-              .addTo(map);
-
-        return new mapboxgl.Map(mapOptions);
-
+            draggable: true
+        }).setLngLat([-98.491142, 29.424349])
+            .addTo(map);
 
     }).fail(console.error);
 
@@ -109,6 +105,7 @@ $(() => {
             map.setCenter(data);
         })
     }
+
     /*****EVENTS*****/
     //When user types in search
     document.querySelector('button').addEventListener('click', userSearch);
