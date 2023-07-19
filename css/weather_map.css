@@ -1,10 +1,14 @@
+body {
+    overflow: hidden;
+}
+
 .page-wrapper {
     font-family: 'Encode Sans Semi Condensed', sans-serif;
 }
 
 header {
     text-align: center;
-    margin: 0.5rem;
+    margin: 0.2rem;
 }
 
 h1 {
@@ -20,16 +24,26 @@ form {
     margin-bottom: 20px;
 }
 
+#map,
+.weatherCard {
+    border: 1px solid rgba(108, 106, 106, 0.15);
+    border-radius: 1rem;
+}
+
 .weatherInfoCurrent {
 
+}
+
+#map {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
 }
 
 .weatherCard {
     height: 20rem;
     text-align: center;
-    border: 1px solid rgba(108, 106, 106, 0.15);
     padding: 1.5rem;
-    border-radius: 2rem;
     font-size: .5rem;
 }
 
@@ -46,11 +60,4 @@ form {
 span {
     font-size: 1.25rem;
     font-weight: 200;
-}
-
-
-#map {
-    width: 100%;
-    height: 100%;
-    margin-bottom: 10px;
 }

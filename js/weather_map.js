@@ -53,16 +53,18 @@ $(() => {
     // Dynamically render html to DOM current forecast
     const renderCurrentWeather = ((weatherStats) => {
         $('#weatherInfoCurrent').append(`<div class="weatherCard">
-                <h1>${weatherStats.name}</h1>
-                <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span></div>
-                <h2>Feels Like</h2>
-                <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
-                <h2>Humidity</h2>
-                <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
-                <h2>Wind</h2>
-                <div><span>${weatherStats.wind.speed} mph</span></div>
-                <h2>Conditions</h2>
-                <div><span>${weatherStats.weather[0].description}</span></div>
+                <div><h1>${weatherStats.name}</h1></div>
+                <div class="currentContent">
+                    <div><span id="temp">${parseInt(weatherStats.main.temp)}&deg;</span></div>
+                    <h2>Feels Like</h2>
+                    <div><span>${parseInt(weatherStats.main.feels_like)}&deg;</span></div>
+                    <h2>Humidity</h2>
+                    <div><span>${parseInt(weatherStats.main.humidity)}%</span></div>
+                    <h2>Wind</h2>
+                    <div><span>${weatherStats.wind.speed} mph</span></div>
+                    <h2>Conditions</h2>
+                    <div><span>${weatherStats.weather[0].description}</span></div>
+                </div>
             </div>`);
     });
 
@@ -80,7 +82,6 @@ $(() => {
                     <div><span>${parseInt(day.main.humidity)}%</span></div>
                     <h2>Wind</h2>
                     <div><span>${parseInt(day.wind.speed)} mph</span></div>
-                    <h2>Conditions</h2>
                     <div><span>${day.weather[0].description}</span></div>
                 </div>`);
             }
